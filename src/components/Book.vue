@@ -14,6 +14,11 @@ export default {
       book: {}
     }
   },
+  methods: {
+    setBook(book) {
+      this.book = book
+    }
+  },
   beforeRouteEnter(to, from, next) {
     const book = Books.find((item) => item.id === to.params.id)
     next((vm) => vm.setBook(book))
