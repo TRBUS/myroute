@@ -26,6 +26,7 @@ const routes = [
     children: [
       {
         path: '/book/:id',
+        name: 'book',
         component: Book
       }
     ]

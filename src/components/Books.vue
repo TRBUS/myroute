@@ -4,7 +4,7 @@
     <h3>图书列表</h3>
     <ul>
       <li v-for="book in books" :key="book.id">
-        <router-link :to="'/book/' + book.id">{{book.title}}</router-link>
+        <router-link :to="{ name: 'book', params: {id: book.id} }">{{book.title}}</router-link>
       </li>
     </ul>
     <router-view></router-view>
