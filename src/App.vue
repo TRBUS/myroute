@@ -6,6 +6,7 @@
       <router-link to="/videos">视频</router-link>
     </p>
     <router-view></router-view>
+    <router-view name="bookDetail"></router-view>
   </div>
 </template>
 

@@ -22,13 +22,18 @@ const routes = [
   {
     path: '/books',
     name: 'books',
-    component: Books,
-    children: [
-      {
-        path: '/book/:id',
-        component: Book
-      }
-    ]
+    component: Books
+    // children: [
+    //   {
+    //     path: '/book/:id',
+    //     component: Book
+    //   }
+    // ]
+  },
+  {
+    path: '/book/:id',
+    name: 'book',
+    components: { bookDetail: Book }
   },
   {
     path: '/videos',
