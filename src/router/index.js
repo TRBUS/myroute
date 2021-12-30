@@ -9,20 +9,31 @@ Vue.use(VueRouter)
 
 const routes = [
   {
+    path: '/',
+    redirect: {
+      name: 'news'
+    }
+  },
+  {
     path: '/news',
+    name: 'news',
     component: News
   },
   {
     path: '/books',
-    component: Books
+    name: 'books',
+    component: Books,
+    children: [
+      {
+        path: '/book/:id',
+        component: Book
+      }
+    ]
   },
   {
     path: '/videos',
+    name: 'videos',
     component: Videos
-  },
-  {
-    path: '/book',
-    component: Book
   }
 ]
 
