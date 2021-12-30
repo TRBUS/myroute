@@ -21,7 +21,7 @@ const routes = [
     component: Videos
   },
   {
-    path: '/book/:id',
+    path: '/book',
     component: Book
   }
 ]

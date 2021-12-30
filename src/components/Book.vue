@@ -1,5 +1,5 @@
 <template>
-  <div>图书ID：{{ $route.params.id }}</div>
+  <div>图书ID：{{ $route.query.id }}</div>
 </template>
 
 <script>
