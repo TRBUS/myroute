@@ -1,8 +1,8 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import News from '../components/News'
-import Books from '../components/Books'
-import Videos from '../components/Videos'
+// import News from '../components/News'
+// import Books from '../components/Books'
+// import Videos from '../components/Videos'
 import Book from '../components/Book'
 import Login from '../components/Login'
 
@@ -18,7 +18,8 @@ const routes = [
   {
     path: '/news',
     name: 'news',
-    component: News,
+    // component: News,
+    component: () => import(/* webpackChunkName: "home" */ '@/components/News'),
     meta: {
       title: '新闻'
     }
@@ -26,7 +27,8 @@ const routes = [
   {
     path: '/books',
     name: 'books',
-    component: Books,
+    // component: Books,
+    component: () => import(/* webpackChunkName: "home" */ '@/components/Books'),
     meta: {
       title: '图书列表'
     },
@@ -44,7 +46,8 @@ const routes = [
   {
     path: '/videos',
     name: 'videos',
-    component: Videos,
+    // component: Videos,
+    component: () => () => import(/* webpackChunkName: "home" */ '@/components/Books'),
     meta: {
       title: '视频',
       requiresAuth: true
