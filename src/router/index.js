@@ -18,29 +18,45 @@ const routes = [
   {
     path: '/news',
     name: 'news',
-    component: News
+    component: News,
+    meta: {
+      title: '新闻'
+    }
   },
   {
     path: '/books',
     name: 'books',
     component: Books,
+    meta: {
+      title: '图书列表'
+    },
     children: [
       {
         path: '/book/:id',
         name: 'book',
-        component: Book
+        component: Book,
+        meta: {
+          title: '图书'
+        }
       }
     ]
   },
   {
     path: '/videos',
     name: 'videos',
-    component: Videos
+    component: Videos,
+    meta: {
+      title: '视频',
+      requiresAuth: true
+    }
   },
   {
     path: '/login',
     name: 'login',
-    component: Login
+    component: Login,
+    meta: {
+      title: '登录'
+    }
   }
 ]
 
@@ -48,6 +64,7 @@ const router = new VueRouter({
   routes
 })
 
+/*
 router.beforeEach((to, from, next) => {
   // 判断目标路由是否是/login，如果是，直接调用next()方法
   if (to.path === '/login') {
@@ -65,6 +82,28 @@ router.beforeEach((to, from, next) => {
       })
     }
   }
+})
+*/
+
+router.beforeEach((to, from, next) => {
+  // 判断该路由是否需要登录权限
+  if (to.matched.some(record => record.meta.requiresAuth)) {
+    // 路由需要验证，判断用户是否已经登录
+    if (sessionStorage.isAuth === 'true') {
+      next()
+    } else {
+      next({
+        path: '/login',
+        query: { redirect: to.fullPath }
+      })
+    }
+  } else {
+    next()
+  }
+})
+
+router.afterEach((to, from) => {
+  document.title = to.meta.title
 })
 
 export default router
